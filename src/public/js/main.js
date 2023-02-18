@@ -5,6 +5,19 @@ $(function(){
     const mensaje = $('#mensaje')
     const chat = $('#chat')
 
+    const nickForm = $('#nickform')
+    const nickName = $('#nickname')
+    const error = $('#error')
+
+    const users = $('#usernames')
+
+    nickForm.submit(e => {
+        e.preventDefault()
+        socket.emit('nuevo usuario',nickName.val(), nick => {
+
+        } )
+        nickName.val('')
+    })
     mensajeForm.submit(e => {
         e.preventDefault()
         socket.emit('enviar mensaje',mensaje.val() )
