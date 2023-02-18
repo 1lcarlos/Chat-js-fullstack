@@ -6,13 +6,9 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-/* app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
-  }); */
 
-/* app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
-  }); */
+  app.set('port', process.env.PORT || 3000)
+
 require("./sockets")(io);
 
  app.use(express.static(path.join(__dirname, "public")));
@@ -21,23 +17,7 @@ require("./sockets")(io);
     console.log('a user connected');
   }); */
 
-server.listen(3000, () => {
-  console.log("listening on *:3000");
+server.listen(app.get('port'), () => {
+  console.log("listening on *:", app.get('port'));
 });
 
-/* import { createServer } from "http";
-import express from "express";
-import { Socket, Server } from "socket.io";
-
-const app = express();
-const server = createServer(app);
-
-const io = new Server(server)
-io.on('conection', (Socket) =>{
-    console.log('nuevo usuario conectado')
-})
-
-app.use(express.static("public"));
-
-app.listen(3000);
-console.log("Server on port 3000"); */
