@@ -12,6 +12,7 @@ module.exports = function(io){
             callback(true)
             socket.nickname = nick;
             nickNames.push(socket.nickname)
+            io.sockets.emit('usernames', nickNames)
           }
         })
         socket.on('enviar mensaje', function(mensaje) {
