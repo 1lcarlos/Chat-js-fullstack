@@ -32,7 +32,7 @@ $(function () {
   });
 
   socket.on("nuevo mensaje", function (mensaje) {
-    chat.append(mensaje + "<br/>");
+    chat.append("<b>"+ mensaje.nick +"</b>"+ mensaje.data + "<br/>");
   });
   socket.on("usernames", (datos) => {
     let html = "";
