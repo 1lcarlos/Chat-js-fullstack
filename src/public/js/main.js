@@ -27,12 +27,14 @@ $(function () {
   });
   mensajeForm.submit((e) => {
     e.preventDefault();
-    socket.emit("enviar mensaje", mensaje.val());
+    socket.emit("enviar mensaje", mensaje.val(), data =>{
+        chat.append(`<p class= "error"> ${data} </p>`)
+    });
     mensaje.val("");
   });
 
   socket.on("nuevo mensaje", function (mensaje) {
-    chat.append("<b>"+ mensaje.nick +"</b>"+ mensaje.data + "<br/>");
+    chat.append("<b>"+ mensaje.nick +"</b>"+ mensaje.msg + "<br/>");
   });
   socket.on("usernames", (datos) => {
     let html = "";
